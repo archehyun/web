@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/api")
 public class WellcomeController {
 
 	public WellcomeController() {
@@ -12,13 +13,16 @@ public class WellcomeController {
 
 	}
 
-	@RequestMapping("/hello")
+	@RequestMapping("/monitor.do")
 	public ModelAndView hello() {
-		System.out.println("st");
 
 		new APIController();
-		String msg = "Hello, World!";
-		return new ModelAndView("hello", "msg", msg);
+		String host2 = "localhost";
+		String serverStr = "ws://" + host2 + ":8080/air/websocket";
+
+		ModelAndView mv = new ModelAndView("monitor", "serverStr", serverStr);
+
+		return mv;
 	}
 
 }

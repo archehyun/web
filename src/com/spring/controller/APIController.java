@@ -12,9 +12,6 @@ public class APIController {
 	Thread thread;
 
 	public APIController() {
-		/*System.out.println("Start");
-		thread = new Thread(new APITimer());
-		thread.start();*/
 	}
 
 	@RequestMapping(value = "/api", method = { RequestMethod.GET, RequestMethod.POST })

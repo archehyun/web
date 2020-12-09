@@ -23,25 +23,29 @@ import org.springframework.web.bind.annotation.RestController;
 @ServerEndpoint("/websocket")
 public class Websocket {
 
+	public Websocket() {
+		System.out.println("websocket init...");
+	}
+
 	static List<Session> sessionUser = Collections.synchronizedList(new ArrayList<Session>());
-	// WebSocketÀ¸·Î ºê¶ó¿ìÀú°¡ Á¢¼ÓÇÏ¸é ¿äÃ»µÇ´Â ÇÔ¼ö
+	// WebSocketï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½Ã»ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
 	@OnOpen
 	public void handleOpen(Session userSession) {
-		// ÄÜ¼Ö¿¡ Á¢¼Ó ·Î±×¸¦ Ãâ·ÂÇÑ´Ù.
+		// ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		System.out.println("client is now connected..." + userSession);
 		sessionUser.add(userSession);
 	}
 
-	// WebSocketÀ¸·Î ¸Þ½ÃÁö°¡ ¿À¸é ¿äÃ»µÇ´Â ÇÔ¼ö
+	// WebSocketï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
 	@OnMessage
 	public void handleMessage(String message) {
-		// ¸Þ½ÃÁö ³»¿ëÀ» ÄÜ¼Ö¿¡ Ãâ·ÂÇÑ´Ù.
+		// ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		System.out.println("receive from client : " + message);
-		// ¿¡ÄÚ ¸Þ½ÃÁö¸¦ ÀÛ¼ºÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ñ´ï¿½.
 		String replymessage = "echo " + message;
-		// ¿¡ÄÚ ¸Þ½ÃÁö¸¦ ÄÜ¼Ö¿¡ Ãâ·ÂÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		System.out.println("send to client : " + replymessage);
-		// ¿¡ÄÚ ¸Þ½ÃÁö¸¦ ºê¶ó¿ìÀú¿¡ º¸³½´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		sendMessage(message);
 
 	}
@@ -73,18 +77,18 @@ public class Websocket {
 		return json.toJSONString();
 	}
 
-	// WebSocket°ú ºê¶ó¿ìÀú°¡ Á¢¼ÓÀÌ ²÷±â¸é ¿äÃ»µÇ´Â ÇÔ¼ö
+	// WebSocketï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
 	@OnClose
 	public void handleClose(Session userSession) {
-		// ÄÜ¼Ö¿¡ Á¢¼Ó ²÷±è ·Î±×¸¦ Ãâ·ÂÇÑ´Ù.
+		// ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		sessionUser.remove(userSession);
 		System.out.println("client is now disconnected...");
 	}
 
-	// WebSocket°ú ºê¶ó¿ìÀú °£¿¡ Åë½Å ¿¡·¯°¡ ¹ß»ýÇÏ¸é ¿äÃ»µÇ´Â ÇÔ¼ö.
+	// WebSocketï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½Ã»ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½.
 	@OnError
 	public void handleError(Throwable t) {
-	// ÄÜ¼Ö¿¡ ¿¡·¯¸¦ Ç¥½ÃÇÑ´Ù.
+	// ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½Ñ´ï¿½.
 	t.printStackTrace();
 	}
 
