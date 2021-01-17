@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="memer">
+
+
+
+
+
+<select id="selectMember" parameterType="hashmap" resultType="hashmap"> 
+<![CDATA[
+SELECT mem_id, mem_pw, mem_nm FROM tb_member 
+where mem_id=#{mem_id}
+ ]]> 
+</select>
+
+<select id="selectMemberList" parameterType="hashmap" resultType="hashmap"> 
+<![CDATA[
+SELECT mem_id, mem_pw, mem_nm FROM tb_member
+ ]]> 
+</select>
+
+<select id="selectUserProgramList" parameterType="hashmap" resultType="hashmap"> 
+SELECT  A.pg_id, B.pg_nm, B.pg_nm_eng, B.pg_src  FROM tb_userprogram as A, tb_program as B
+				where A.pg_id=B.pg_id and A.mem_id=#{mem_id}
+</select>
+
+
+ 
+
+</mapper>
+

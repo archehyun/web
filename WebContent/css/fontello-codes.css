@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+ 
+.icon-expand-right:before { content: '\f152'; } /* '' */
+.icon-search:before { content: '🔍'; } /* '\1f50d' */

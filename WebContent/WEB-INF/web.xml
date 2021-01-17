@@ -17,7 +17,8 @@
 	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/config/application-context.xml</param-value>
+		<param-value>/WEB-INF/config/application-context.xml 
+		/WEB-INF/config/spring/context-*.xml</param-value>
 	</context-param>
 
 	<servlet>
@@ -28,9 +29,24 @@
 			<param-value>/WEB-INF/config/dispatcher-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet>
+	</servlet>	
+	
 	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+	    <servlet-name>dispatcher</servlet-name>
+	    <url-pattern>*.do</url-pattern>
+	  
+  	</servlet-mapping>
+  	
+  	<error-page>
+
+		<error-code>404</error-code>
+
+		<location>/WEB-INF/views/error/404error.jsp</location>
+
+	</error-page>
+
+
+
+
+	
 </web-app>

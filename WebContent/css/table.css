@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+.item1 {
+	grid-area: search;
+	padding: 10px;
+}
+
+.item1:after {
+	clear: both;
+	display: block;
+	content: ''
+}
+
+.item1 .item {
+	float: left;
+}
+
+.item1 .item.last {
+	float: right;
+}
+
+.item2 {
+	grid-area: menu;
+}
+
+.item3 {
+	grid-area: main;
+	
+}
+
+.item4 {
+	grid-area: right;
+}
+
+.item5 {
+	grid-area: footer;
+}
+
+body {
+	margin: 0;
+	width: 100%;
+}
+
+.sub-container {
+	display: grid;
+	grid-template-areas: 'search search' 'main right';
+	grid-template-columns: auto 275px;
+	grid-template-rows: 70px auto;
+	
+	padding: 0px;
+	height: 98vh;
+	border: 1px;
+	margin: 0;
+	grid-gap: 15px;
+}
+
+.h-container:after {
+	clear: both;
+	display: block;
+}
+
+.h-container .h-item {
+	float: left;
+	width: 250px;
+}
+
+.warraper {
+	width: 99%;
+	height: 95%;
+	border: 1px solid gray;;
+	border-top: 2px solid black;;
+	border-bottom: 2px solid black;;
+}
+
+tr.row:hover {
+	background-color: lightyellow;
+}
+
+
+table.table_type1{
+	border-collapse: separate;
+	text-align: center;
+	line-height: 1.5;
+	margin: 0px 0px;
+	font-size: 12px;
+}
+
+table.table_type1 th{
+	position: sticky;
+	color: #fff;
+	background: #ce4869;
+	top: 0;
+}
+
+table.table_type1 td{
+	padding: 1px;
+	border-bottom: 1px solid #ccc;
+}
+
+
+
+table.type11 {
+	border-collapse: separate;
+	border-spacing: 1px;
+	text-align: center;
+	line-height: 1.5;
+	margin: 0px 0px;
+	font-size: 12px;
+}
+
+table.type11 th {
+	height: 100%;
+	padding: 5px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: #ce4869;
+}
+
+table.type11 td {
+	width: 50px;
+	padding: 1px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+table.type12 {
+	border-collapse: separate;
+	font-size: 5px;
+}
+
+
+
+table.inputTable {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 1px;
+	text-align: left;
+	line-height: 1.5;
+	margin: 20px 10px 10px 10px;
+}
+
+table.inputTable td {
+	width: 80px;
+	padding: 1px;
+	vertical-align: middle;
+	border-bottom: 1px solid #ccc;
+	background: #eee;
+}
+
+table.inputTable tr {
+	height: 100%;
+}
+
+.row {
+	cursor: pointer;
+}
+
+.resize-handle {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: black;
+	opacity: 0;
+	width: 3px;
+	cursor: col-resize;
+}
+
+.resize-handle:hover,
+	/* The following selector is needed so the handle is visible during resize even if the mouse isn't over the handle anymore */
+	.header--being-resized .resize-handle {
+	opacity: 0.5;
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="program">
+
+
+	<select id="selectProgramList" parameterType="hashmap" resultType="hashmap"> 
+<![CDATA[ SELECT pg_id, pg_nm, pg_src, pg_nm_eng  FROM tb_program
+ ]]>
+	</select>
+
+	<insert id="insertProgram" parameterType="hashmap" >
+		<![CDATA[ 
+			INSERT INTO tb_program
+				(pg_id
+				,pg_nm
+				,pg_src
+				,pg_nm_eng)
+				values
+				(
+				#{pg_id},
+				#{pg_nm},
+				#{pg_src},
+				#{pg_nm_eng}
+				
+				)
+				
+				
+			
+		]]>
+	</insert>
+
+	<delete id="deleteProgram" parameterType="hashmap"  >
+		<![CDATA[ 
+		DELETE FROM tb_program 
+		WHERE
+		    (pg_id = #{pg_id});
+		]]>
+	</delete>	
+	
+<select id="updateProgram"   parameterType="hashmap"  >
+<![CDATA[
+	update tb_program
+set
+	pg_nm=#{pg_nm},	
+	pg_src=#{pg_src},
+	pg_nm_eng=#{pg_nm_eng}
+WHERE pg_id=#{pg_id}; 
+ ]]> 
+</select>
+
+
+</mapper>
+

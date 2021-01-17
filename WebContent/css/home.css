@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+.item1 {
+	grid-area: header;
+	border-bottom-width: 0.5px;
+	border-bottom-style: inset;
+	border-bottom-color: red;
+}
+
+.item2 {
+	grid-area: menu;
+	border-right-width: 0.5px;
+	border-right-style: inset;
+	border-right-color: graytext;
+}
+
+.item3 {
+	grid-area: main;
+}
+
+.item4 {
+	grid-area: right;
+}
+
+.item5 {
+	grid-area: footer;
+	border-top-width: 0.1px;
+	border-top-style: solid;
+	border-top-color: gray;
+}
+
+body {
+	margin: 0;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-areas: 'menu header' 'menu main' 'menu footer';
+	grid-template-columns: 150px auto;
+	grid-template-rows: 50px auto 50px;
+	grid-gap: 10px;
+	padding: 10px;
+	height: 95vh;
+	border: 1px;
+	margin: 0;
+}
+
+.warraper {
+	height: 600px;;
+}
+
+ul.mylist, ol.mylist {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	max-width: 250px;
+	width: 100%;
+}
+
+
+
+ul.mylist li, ol.mylist li {
+	padding: 5px 0px 5px 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #efefef;
+	font-size: 12px;
+}
+
+ul.mylist li:hover {
+	background: black;
+}
+
+ul.mylist li:hover a {
+	color: white;
+	font-weight: bold
+}
+
+
+ul.mylist li:last-child, ol.mylist li:last-child {
+	border-bottom: 0px;
+}
+
+ul.mylist li:before, ol.mylist li:before {
+	content: ">";
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0px 5px 6px 0px;
+}
+
+.row {
+	cursor: pointer;
+}
+
+.resize-handle {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: black;
+	opacity: 0;
+	width: 3px;
+	cursor: col-resize;
+}
+
+.resize-handle:hover,
+	/* The following selector is needed so the handle is visible during resize even if the mouse isn't over the handle anymore */
+	.header--being-resized .resize-handle {
+	opacity: 0.5;
+}

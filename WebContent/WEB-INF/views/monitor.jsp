@@ -5,57 +5,61 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-<link rel="stylesheet" href="css/table.css" />
+<link rel="stylesheet" href="../css/table.css" />
+<link rel="stylesheet" href="../css/layout2.css" />
+<style type="text/css">
+
+.chart_div{
+display: flex;
+flex-direction: column;
+}
+
+</style>
 </head>
 <body>
-	<a href='/web' class="link_find">main</a>
-	<div class="grid-container">
-		<div class="item1"></div>
-		<div class="item2">
-
-			<ui>			
-			<li><a href='../api/monitor.do' class="link_find">API</a></li>
-			<li><a href='../account/home.do' class="link_find">INCOME</a></li>
-			<li><a href='../account/home.do' class="link_find">OUTCOME</a></li>
-			</ui>
-
-		</div>
-
-
-		<div class="item3" style="overflow-x: auto;">
+	<div class="container">
+		<div class="sub_head">
 			<form>
 				<!-- 송신 메시지를 작성하는 텍스트 박스 -->
 				<input id="textMessage" type="text">
 				<!-- 메시지 송신을 하는 버튼 -->
-				<input onclick="sendMessage()" value="Sehnd" type="button">
+				<input onclick="sendMessage()" value="Send" type="button">
 				<!-- WebSocket 접속 종료하는 버튼 -->
 				<input onclick="disconnect()" value="Disconnect" type="button">
 			</form>
 			<br />
-			<!-- 콘솔 메시지의 역할을 하는 로그 텍스트 에리어.(수신 메시지도 표시한다.) -->
-
-			<div style="width: 800px">
-				<canvas id="myChart"></canvas>
-			</div>
-
-			<textarea id="messageTextArea" rows="10" cols="110"></textarea>
-
 		</div>
-		<div class="item4">Right</div>
-		<div class="item5">Footer</div>
+
+		<div class="content" >
+
+			<!-- 콘솔 메시지의 역할을 하는 로그 텍스트 에리어.(수신 메시지도 표시한다.) -->
+			<div class="chart_div">
+				<div class="h-item" >
+					<canvas id="myChart"></canvas>
+				</div>
+				<div class="h-item" >
+					<canvas id="myChart2"></canvas>
+				</div>
+			</div>
+			<textarea id="messageTextArea" rows="10" cols="110"></textarea>
+		</div>
+		<div class="item4"></div>
 
 	</div>
+
+
 
 	<script type="text/javascript">
 		// 「WebSocketEx」는 프로젝트 명
 		// 「websocket」는 호스트 명
 		// WebSocket 오브젝트 생성 (자동으로 접속 시작한다. - onopen 함수 호출)
+		//var serverStr = "ws://archehyun.iptime.org:8080/air/websocket";
+		var serverStr1 = "${serverStr}";
+		//var serverStr1 = '<c:out value="${serverStr}"/>';
 
-		var webSocket = new WebSocket(
-				"ws://archehyun.iptime.org:8080/air/websocket");
+		var webSocket = new WebSocket(serverStr1);
 
 		// 콘솔 텍스트 에리어 오브젝트
 		var messageTextArea = document.getElementById("messageTextArea");
@@ -180,6 +184,64 @@
 		};
 
 		var myChart = new Chart(ctx, config);
+
+		// 우선 컨텍스트를 가져옵니다. 
+		var ctx2 = document.getElementById("myChart2").getContext('2d');
+		/*
+		 - Chart를 생성하면서, 
+		 - ctx를 첫번째 argument로 넘겨주고, 
+		 - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
+		 */
+		var config2 = {
+			type : 'line',
+			data : {
+				labels : [ // Date Objects
+				'data1', 'data2', 'data3', 'data4', 'data5', 'data6', 'data7' ],
+				datasets : [
+						{
+							label : 'Temp',
+							backgroundColor : 'rgba(75, 192, 192, 1)',
+							borderColor : 'rgba(75, 192, 192, 1)',
+							fill : false,
+							data : [ Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50) ],
+						},
+						{
+							label : 'Hit',
+							backgroundColor : 'rgba(255, 99, 132, 1)',
+							borderColor : 'rgba(255, 99, 132, 1)',
+							fill : false,
+							data : [ Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50),
+									Math.floor(Math.random() * 50) ],
+						} ]
+			},
+			options : {
+				maintainAspectRatio : false,
+				title : {
+					text : 'Chart.js Time Scale'
+				},
+				scales : {
+					yAxes : [ {
+						scaleLabel : {
+							display : true,
+							labelString : '차트'
+						}
+					} ]
+				},
+			}
+		};
+
+		var myChart2 = new Chart(ctx2, config);
 	</script>
 
 </body>

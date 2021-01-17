@@ -28,24 +28,24 @@ public class Websocket {
 	}
 
 	static List<Session> sessionUser = Collections.synchronizedList(new ArrayList<Session>());
-	// WebSocket���� �������� �����ϸ� ��û�Ǵ� �Լ�
+
 	@OnOpen
 	public void handleOpen(Session userSession) {
-		// �ֿܼ� ���� �α׸� ����Ѵ�.
+
 		System.out.println("client is now connected..." + userSession);
 		sessionUser.add(userSession);
 	}
 
-	// WebSocket���� �޽����� ���� ��û�Ǵ� �Լ�
+
 	@OnMessage
 	public void handleMessage(String message) {
-		// �޽��� ������ �ֿܼ� ����Ѵ�.
+
 		System.out.println("receive from client : " + message);
-		// ���� �޽����� �ۼ��Ѵ�.
+
 		String replymessage = "echo " + message;
-		// ���� �޽����� �ֿܼ� ����Ѵ�.
+
 		System.out.println("send to client : " + replymessage);
-		// ���� �޽����� �������� ������.
+
 		sendMessage(message);
 
 	}
@@ -77,18 +77,17 @@ public class Websocket {
 		return json.toJSONString();
 	}
 
-	// WebSocket�� �������� ������ ����� ��û�Ǵ� �Լ�
+
 	@OnClose
 	public void handleClose(Session userSession) {
-		// �ֿܼ� ���� ���� �α׸� ����Ѵ�.
 		sessionUser.remove(userSession);
 		System.out.println("client is now disconnected...");
 	}
 
-	// WebSocket�� ������ ���� ��� ������ �߻��ϸ� ��û�Ǵ� �Լ�.
+
 	@OnError
 	public void handleError(Throwable t) {
-	// �ֿܼ� ������ ǥ���Ѵ�.
+
 	t.printStackTrace();
 	}
 

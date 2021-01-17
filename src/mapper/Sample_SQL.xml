@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample">
+
+	<select id="selectBoardList3" parameterType="hashmap"
+		resultType="hashmap"> 
+<![CDATA[ SELECT idx, value, contents, gubun, inout_type, dt FROM tb_account where inout_type=#{inout_type} ORDER BY idx DESC ]]>
+	</select>
+
+	<select id="selectBoardList2" parameterType="hashmap"
+		resultType="hashmap"> 
+<![CDATA[ SELECT IDX, TITLE, HIT_CNT, CREA_DTM FROM TB_ACCOUNT WHERE DEL_GB = 'N' ORDER BY IDX DESC ]]>
+	</select>
+
+
+
+	<select id="deleteCode" parameterType="hashmap"
+		resultType="hashmap" statementType="CALLABLE">
+<![CDATA[
+	call delete_code(
+	#{PD_VALUE1, mode=IN, jdbcType=VARCHAR}
+	
+		) 
+ ]]>
+	</select>
+
+
+	
+
+	<select id="selectCodeHList" parameterType="hashmap"
+		resultType="hashmap">
+		SELECT * FROM tb_code_h where 1=1
+		<if test="main_cd != null and main_cd!=''">AND main_cd = #{main_cd} </if>
+		<if test="cd_nm != null">AND cd_nm = #{cd_nm} </if>
+	</select>
+	<select id="selectCodeDList" parameterType="hashmap"
+		resultType="hashmap"> 
+<![CDATA[ SELECT *  FROM tb_code_d where main_cd=#{main_cd}
+ ]]>
+	</select>
+
+
+</mapper>
+

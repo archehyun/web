@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="category">
+
+
+
+
+
+<select id="selectGubun" parameterType="hashmap" resultType="hashmap"> 
+<![CDATA[
+SELECT gubun_cd, gubun_nm, inout_type, item1, item2, item3 FROM tb_gubun
+where inout_type=#{inout_type}
+ ]]> 
+</select>
+
+<select id="updateGubun"   parameterType="hashmap" resultType="hashmap" >
+<![CDATA[
+		update tb_gubun
+		set 
+		
+	    gubun_nm=#{gubun_nm},
+	    inout_type=#{input_inout_type},
+	    item1 = #{item1},
+	    item2 = #{item2},
+	    item3 = #{item3}
+	WHERE gubun_cd=#{gubun_cd} ; 
+ ]]> 
+</select>
+<select id="insertGubun"   parameterType="hashmap" resultType="hashmap" >
+<![CDATA[
+	INSERT INTO tb_gubun
+		(gubun_cd
+		,gubun_nm
+		,inout_type
+		,item1
+		,item2
+	    ,item3)
+		VALUES
+		(#{gubun_cd}
+		,#{gubun_nm}
+		,#{inout_type}
+		,#{item1}
+		,#{item2}	
+	    ,#{item3}    
+	);
+ ]]> 
+</select>
+
+
+<select id="deleteGubun"  parameterType="hashmap" resultType="hashmap" >
+<![CDATA[
+ DELETE FROM tb_gubun
+WHERE
+    (gubun_cd = #{gubun_cd});
+ ]]> 
+</select>
+
+
+</mapper>
+
