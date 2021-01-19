@@ -136,8 +136,7 @@ table.inputTable {
 	border-collapse: separate;
 	border-spacing: 1px;
 	text-align: left;
-	line-height: 1.5;
-	margin: 20px 10px 10px 10px;
+	line-height: 1.5;	
 }
 
 table.inputTable td {

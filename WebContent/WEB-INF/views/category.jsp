@@ -119,10 +119,9 @@ table.inputTable2 td {
 						</div>
 					</div>
 					<div class="table_wrap">
-						<form>
 							<table class="inputTable2" width="100%">
 								<tr>
-									<td>코 드</td>
+									<td>코 드</td> 
 									<td><input type="text" name="gubun_cd" id="gubun_cd"
 										size="12" /></td>
 								</tr>
@@ -156,7 +155,6 @@ table.inputTable2 td {
 								</tr>
 
 							</table>
-						</form>
 
 					</div>
 

@@ -8,6 +8,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link rel="stylesheet" href="../css/table.css" />
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+
+
 <style>
 #wrapper {
 	display: table;
@@ -23,6 +31,11 @@
 	border-bottom-style: solid 1px black;
 	margin-bottom: 10px
 }
+.chart_view{
+	width: 100%;  
+
+
+
 </style>
 
 </head>
@@ -35,9 +48,9 @@
 
 					<select name="dt_year" id="dt_year">
 						<option value="2020"
-						<c:if test="${input_year == '2020'}">selected</c:if>>2020년</option>
-						<option value="2021" 
-						<c:if test="${input_year == '2021'}">selected</c:if>>2021년</option>
+							<c:if test="${input_year == '2020'}">selected</c:if>>2020년</option>
+						<option value="2021"
+							<c:if test="${input_year == '2021'}">selected</c:if>>2021년</option>
 
 					</select> <input type="submit" value="조회">
 				</form>
@@ -129,7 +142,8 @@
 									<c:choose>
 
 										<c:when test="${status.last==true}">
-											<tr class="row" onclick="btnView_Enc_Click('1')"  bgcolor="lightblue">
+											<tr class="row" onclick="btnView_Enc_Click('1')"
+												bgcolor="lightblue">
 												<td>합계</td>
 												<td>${row.dt1 }</td>
 												<td>${row.dt2 }</td>
@@ -178,11 +192,22 @@
 
 					</tbody>
 				</table>
-			
-				
-			</div>
 
+
+			</div>
+			<div class="div-s">
+					<canvas id="canvas" class="chart_view" ></canvas>
+				
+				<button id="randomizeData">Randomize Data</button>
+				<button id="addDataset">Add Dataset</button>
+				<button id="removeDataset">Remove Dataset</button>
+				<button id="addData">Add Data</button>
+				<button id="removeData">Remove Data</button
+			</div>
 		</div>
+
+
+
 	</div>
 </body>
 <script type="text/javascript">
@@ -222,5 +247,78 @@ function addComma(value) {
 	    result = "," + strCut + result;
 	  }
 
-</script>
+
+}
+window.chartColors = {
+	      red: 'rgb(255, 99, 132)',
+	      orange: 'rgb(255, 159, 64)',
+	      yellow: 'rgb(255, 205, 86)',
+	      green: 'rgb(75, 192, 192)',
+	      blue: 'rgb(54, 162, 235)',
+	      purple: 'rgb(153, 102, 255)',
+	      grey: 'rgb(201, 203, 207)'
+	    };
+
+var randomScalingFactor = function() {
+	return Math.round(Math.random() * 100);
+};
+	
+		var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		var color = Chart.helpers.color;
+		var barChartData = {
+			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+			datasets: [{
+				label: 'Dataset 1',
+				backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.red,
+				borderWidth: 1,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}, {
+				label: 'Dataset 2',
+				backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.blue,
+				borderWidth: 1,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}]
+
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: false,
+					title: {
+						display: false,
+						text: 'Chart.js Bar Chart'
+					}
+				}
+			});
+
+		}; 
+
+	
+	</script>
+
+
+
 </html>

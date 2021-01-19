@@ -101,7 +101,7 @@
 
 .canvas-holder {
 	width: 100%;
-	height: 250px;
+	height: 450px;
 }
 .title_label{
 width: 100%;
@@ -332,7 +332,12 @@ padding-left: 10px;
 							</table>
 
 						</form>
-
+						<h2>
+							<div  class="title_label">금액 : <c:out value="${sum}" /></div>
+						</h2>
+						<div id="canvas-holder" >
+							<canvas id="chart-area" ></canvas>
+						</div>
 						<table class="inputTable">
 							<thead>
 								<tr>
@@ -360,13 +365,7 @@ padding-left: 10px;
 								</c:choose>
 							</tbody>
 						</table>
-						<h2>
-							
-							<div  class="title_label">금액 : <c:out value="${sum}" /></div>
-						</h2>
-						<div id="canvas-holder">
-							<canvas id="chart-area"></canvas>
-						</div>
+
 
 
 					</div>
@@ -377,6 +376,20 @@ padding-left: 10px;
 		</div>
 
 		<script>
+		
+		
+		
+		/******
+		common method
+		1. fn_select
+		2. fn_inert
+		3. fn_update
+		4. fn_delete
+		5. fn_callback
+		*/
+		
+
+		
 		
 			var selectedTab;
 			
@@ -466,6 +479,12 @@ padding-left: 10px;
 				}
 
 			}
+			
+			/*********************************
+			 1. fn_select 
+			- marster  
+			- datas	  
+			**********************************/
 
 			this.fn_select = function() {
 
@@ -618,6 +637,20 @@ padding-left: 10px;
 				}
 			
 			}
+			
+			
+			
+		
+		</script>
+		<script type="text/javascript">
+			// 차트		
+			
+			
+				/*********************************
+			User Define Method
+			
+			*********************************/
+			
 
 			$(function() {
 				var option = {
@@ -763,9 +796,7 @@ padding-left: 10px;
 					});
 
 			//var str = $('input[name=_selected_]:checked').serialize(); // 이건 QueryString 방식으로
-		</script>
-		<script type="text/javascript">
-			// 차트		
+			
 
 			function update_chart() {
 
@@ -798,7 +829,7 @@ padding-left: 10px;
 			window.onload = function() {
 
 				config = {
-					type : 'pie',
+					type : 'doughnut',
 					data : {
 						datasets : [ {
 							data : [ 1, 2, 3, 4, 5
@@ -817,37 +848,57 @@ padding-left: 10px;
 
 						]
 					},
+				
+					
+					
 					options : {
 						responsive : true,
 						legend : false,
+						plugins: {
+					          labels:[
+					        	  { render: 'label',
+					        	      position: 'outside'
+					        	      
+					        	   },
+					        	  {
+					        	    	render: 'percentage',
+					        	    	fontColor: '#000',
+					        	    	fontStyle: 'bold'
+					        	    	   /*   fontColor: '#000',
+										    fontFamily: '"Lucida Console", Monaco, monospace', */
+					        	  }
+					          ]
+					          
+					        }
+						
+						  /* fontStyle: 'bold',
+						    fontColor: '#000',
+						    fontFamily: '"Lucida Console", Monaco, monospace', */
 
-						pieceLabel : {
-							render : 'value',
-							position : 'outside',
-							fontSize : 11,
-							fontStyle : 'bold',
-							fontColor : function(data) {
-								var rgb = hexToRgb(data.dataset.backgroundColor[data.index]);
-								var threshold = 140;
-								var luminance = 0.299 * rgb.r + 0.587 * rgb.g
-										+ 0.114 * rgb.b;
-								return luminance > threshold ? 'black'
-										: 'white';
-							}
-
-						}
+						/* pieceLabel: {
+						    render: 'value',
+						   	fontSize:25,
+						    precision: 2
+						  } */
 					}
 				};
 
 				var ctx = document.getElementById('chart-area')
 						.getContext('2d');
 				window.myPie = new Chart(ctx, config);
-				console.log("labels0:" + config.data.labels);
 				update_chart();
 			};
 		</script>
 
 		<script type="text/javascript">
+		
+		/*********************************
+		User Define Method
+		
+		*********************************/
+		
+		
+		
 			function btnView_Enc_Click(encParam) // 조회된 리스트 클릭 시 상세보기 팝업 호출
 			{
 				

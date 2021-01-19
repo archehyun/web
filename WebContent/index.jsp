@@ -11,7 +11,7 @@
 
 window.onload=function()
 {
-	window.location.href = './member/login.do';
+	window.location.href = './member/loginhome.do';
 }
 
 </script>
