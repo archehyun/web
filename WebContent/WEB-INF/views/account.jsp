@@ -864,22 +864,13 @@ padding-left: 10px;
 					        	    	render: 'percentage',
 					        	    	fontColor: '#000',
 					        	    	fontStyle: 'bold'
-					        	    	   /*   fontColor: '#000',
-										    fontFamily: '"Lucida Console", Monaco, monospace', */
+					        	    	 
 					        	  }
 					          ]
 					          
 					        }
 						
-						  /* fontStyle: 'bold',
-						    fontColor: '#000',
-						    fontFamily: '"Lucida Console", Monaco, monospace', */
-
-						/* pieceLabel: {
-						    render: 'value',
-						   	fontSize:25,
-						    precision: 2
-						  } */
+						  
 					}
 				};
 

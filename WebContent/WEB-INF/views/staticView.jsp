@@ -22,6 +22,8 @@
 	width: 100%;
 }
 
+
+
 #content {
 	display: table-cell;
 	vertical-align: middle;
