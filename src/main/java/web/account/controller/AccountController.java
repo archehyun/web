@@ -23,7 +23,7 @@ import web.common.util.MapUtil;
 
 
 /* Name : account
- *GIT TEST1
+ *GIT TEST2
  */
 
 @Controller
